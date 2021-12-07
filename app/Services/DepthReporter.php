@@ -22,12 +22,6 @@ class DepthReporter {
 	 */
 	private $first_depth;
 
-	/**
-	 * @var Depth
-	 */
-	private $secong_depth;
-
-
 	public function depths( DepthCollection $depths ) {
 		$this->depths = $depths;
 
@@ -48,8 +42,30 @@ class DepthReporter {
 		return $this;
 	}
 
-	public function getDepthIncreases() {
-		return $this->depth_increases;
+	public function sliding_depth_report( $sliding_depth ) {
+		// Get the sum of the first 3 depths
+		$this->first_depth = $this->depths->slice( 0, $sliding_depth )->sum( function ( $depth ) {
+			return $depth->getDepth();
+		} );
+
+		for ( $i = 1; $i <= $this->depths->count(); $i ++ ) {
+			$current_depth = $this->depths->slice( $i, $sliding_depth )->sum( function ( $depth ) {
+				return $depth->getDepth();
+			} );
+
+			if ( $current_depth > $this->first_depth ) {
+				$this->depth_increases ++;
+			}
+
+			$this->first_depth = $current_depth;
+		}
+
+
+		return $this;
 	}
+
+	public function getDepthIncreases() {
+        return $this->depth_increases;
+    }
 
 }

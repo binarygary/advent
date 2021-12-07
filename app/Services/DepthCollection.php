@@ -19,6 +19,7 @@ class DepthCollection extends Collection {
 
 		foreach ( $depths as $depth ) {
 			if ( is_a( $depth, Depth::class) )  {
+				$value_objects[] = $depth;
 				continue;
 			}
 

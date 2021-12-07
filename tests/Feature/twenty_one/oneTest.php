@@ -39,7 +39,15 @@ class oneTest extends TestCase {
 		);
 	}
 
-	public function test__can_build_three_packs() {
+	public function test_can_build_three_packs() {
+		$depths = explode( PHP_EOL, $this->test_data );
 
+        $depth_reporter = new DepthReporter();
+        $depth_reporter->depths( new DepthCollection( $depths ) );
+
+        $this->assertEquals(
+            $depth_reporter->sliding_depth_report(3)->getDepthIncreases(),
+            5
+        );
 	}
 }

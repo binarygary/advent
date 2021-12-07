@@ -47,7 +47,12 @@ class one extends Command {
 		$depth_collection = new DepthCollection( $data );
 
 		echo $depth_reporter->depths( $depth_collection )->report()->getDepthIncreases();
+		echo PHP_EOL;
 
+
+		$depth_reporter = new DepthReporter();
+		$depth_collection = new DepthCollection( $data );
+		echo $depth_reporter->depths( $depth_collection )->sliding_depth_report(3)->getDepthIncreases();
 
 		return Command::SUCCESS;
 	}
