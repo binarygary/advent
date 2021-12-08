@@ -51,7 +51,10 @@ class two extends Command
 
 		$pilot = new Pilot( $navigation_collection );
 
-		echo $pilot->navigate()->diagonal_distance();
+		echo 'Diagonal distance:' . $pilot->navigate()->diagonal_distance() . PHP_EOL;
+
+		$pilot = new Pilot( $navigation_collection );
+		echo 'Diagonal distance with aim:' . $pilot->navigate_with_aim()->diagonal_distance() . PHP_EOL;
 
 		return Command::SUCCESS;
     }

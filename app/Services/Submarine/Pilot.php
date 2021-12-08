@@ -35,10 +35,8 @@ class Pilot {
 				$this->distance += $navigation_instruction->getDistance();
 				$this->depth += $this->aim * $navigation_instruction->getDistance();
 			} else if ( Directions::DOWN == $navigation_instruction->getDirection() ) {
-				$this->depth += $navigation_instruction->getDistance();
 				$this->aim += $navigation_instruction->getDistance();
 			} else {
-				$this->depth -= $navigation_instruction->getDistance();
 				$this->aim -= $navigation_instruction->getDistance();
 			}
 		} );
