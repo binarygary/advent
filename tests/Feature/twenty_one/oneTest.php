@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\twenty_one;
 
-use App\Services\DepthCollection;
-use App\Services\DepthReporter;
+use App\Services\Submarine\DepthCollection;
+use App\Services\Submarine\DepthReporter;
 use Tests\TestCase;
 
 class oneTest extends TestCase {

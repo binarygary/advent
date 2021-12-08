@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Submarine;
 
 use App\ValueObjects\Depth;
-use phpDocumentor\Reflection\Types\Collection;
 
 class DepthReporter {
 

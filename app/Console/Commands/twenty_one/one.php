@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\twenty_one;
 
-use App\Services\DepthCollection;
-use App\Services\DepthReporter;
+use App\Services\Submarine\DepthCollection;
+use App\Services\Submarine\DepthReporter;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
