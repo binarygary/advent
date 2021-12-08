@@ -10,11 +10,11 @@ class DistanceCollection extends Collection {
 
 	public function __construct( array $distances ) {
 		parent::__construct(
-			$this->get_value_objects( $distances )
+			$this->get_direction_value_objects( $distances )
 		);
 	}
 
-	public function get_value_objects( array $distances ) {
+	public function get_direction_value_objects( array $distances ) {
 		$value_objects = [];
 
 		foreach ( $distances as $distance ) {

@@ -2,18 +2,16 @@
 
 namespace App\ValueObjects;
 
-enum Directions {
+enum Directions: string {
+	case FORWARD = 'forward';
+	case DOWN = 'down';
+	case UP = 'up';
 
-	case FORWARD;
-	case DOWN;
-	case UP;
-
-	public function direction(): string {
+	public function direction() {
 		return match ( $this ) {
-			self::DOWN => 'down',
-			self::FORWARD => 'forward',
-			self::UP => 'up',
+			Directions::FORWARD => 'forward',
+            Directions::DOWN => 'down',
+            Directions::UP => 'up',
 		};
 	}
-
 }

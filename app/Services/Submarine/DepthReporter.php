@@ -43,7 +43,7 @@ class DepthReporter {
 
 	public function sliding_depth_report( $sliding_depth ) {
 		// Get the sum of the first 3 depths
-		$this->first_depth = $this->depths->slice( 0, $sliding_depth )->sum( function ( $depth ) {
+		$this->first_depth = $this->depths->slice( 0, $sliding_depth )->sum( function ( Distance $depth ) {
 			return $depth->getDistance();
 		} );
 

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\twenty_one;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Services\Submarine\NavigationCollection;
+use App\Services\Submarine\Pilot;
 use Tests\TestCase;
 
 class twoTest extends TestCase
@@ -16,10 +16,14 @@ up 3
 down 8
 forward 2';
 
-    public function test_example()
+    public function test_pilot()
     {
-        $response = $this->get('/');
+		$directions = explode( PHP_EOL, $this->test_data );
 
-        $response->assertStatus(200);
+		$navigation_collection = new NavigationCollection( $directions );
+
+        $pilot = new Pilot( $navigation_collection );
+
+		$this->assertEquals( $pilot->navigate()->diagonal_distance(), 150 );
     }
 }

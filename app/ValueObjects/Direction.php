@@ -6,9 +6,10 @@ class Direction {
 
 	public function __construct(
 		private Directions $direction,
-		private int $distance
 	) {}
 
-	
+	public function getDirection(): Directions {
+		return $this->direction;
+    }
 
 }
