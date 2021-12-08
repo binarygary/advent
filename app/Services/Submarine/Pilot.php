@@ -9,6 +9,7 @@ class Pilot {
 
 	private $depth = 0;
 	private $distance = 0;
+	private $aim = 0;
 
 	public function __construct(
 		private NavigationCollection $navigation
@@ -22,6 +23,23 @@ class Pilot {
 				$this->depth += $navigation_instruction->getDistance();
 			} else {
 				$this->depth -= $navigation_instruction->getDistance();
+			}
+		} );
+
+		return $this;
+	}
+
+	public function navigate_with_aim() {
+		$this->navigation->map( function ( NavigationInstruction $navigation_instruction ) {
+			if ( Directions::FORWARD == $navigation_instruction->getDirection() ) {
+				$this->distance += $navigation_instruction->getDistance();
+				$this->depth += $this->aim * $navigation_instruction->getDistance();
+			} else if ( Directions::DOWN == $navigation_instruction->getDirection() ) {
+				$this->depth += $navigation_instruction->getDistance();
+				$this->aim += $navigation_instruction->getDistance();
+			} else {
+				$this->depth -= $navigation_instruction->getDistance();
+				$this->aim -= $navigation_instruction->getDistance();
 			}
 		} );
 
