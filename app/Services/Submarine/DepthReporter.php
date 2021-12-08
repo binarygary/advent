@@ -2,12 +2,12 @@
 
 namespace App\Services\Submarine;
 
-use App\ValueObjects\Depth;
+use App\ValueObjects\Distance;
 
 class DepthReporter {
 
 	/**
-	 * @var DepthCollection
+	 * @var DistanceCollection
 	 */
 	private $depths;
 
@@ -17,11 +17,11 @@ class DepthReporter {
 	private $depth_increases = 0;
 
 	/**
-	 * @var Depth
+	 * @var Distance
 	 */
 	private $first_depth;
 
-	public function depths( DepthCollection $depths ) {
+	public function depths( DistanceCollection $depths ) {
 		$this->depths = $depths;
 
 		return $this;
@@ -44,12 +44,12 @@ class DepthReporter {
 	public function sliding_depth_report( $sliding_depth ) {
 		// Get the sum of the first 3 depths
 		$this->first_depth = $this->depths->slice( 0, $sliding_depth )->sum( function ( $depth ) {
-			return $depth->getDepth();
+			return $depth->getDistance();
 		} );
 
 		for ( $i = 1; $i <= $this->depths->count(); $i ++ ) {
 			$current_depth = $this->depths->slice( $i, $sliding_depth )->sum( function ( $depth ) {
-				return $depth->getDepth();
+				return $depth->getDistance();
 			} );
 
 			if ( $current_depth > $this->first_depth ) {

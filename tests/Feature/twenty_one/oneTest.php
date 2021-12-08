@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\twenty_one;
 
-use App\Services\Submarine\DepthCollection;
+use App\Services\Submarine\DistanceCollection;
 use App\Services\Submarine\DepthReporter;
 use Tests\TestCase;
 
@@ -22,7 +22,7 @@ class oneTest extends TestCase {
 	public function test_can_create_collection() {
 		$depths = explode( PHP_EOL, $this->test_data );
 
-		$depth_collection = new DepthCollection( $depths );
+		$depth_collection = new DistanceCollection( $depths );
 
 		$this->assertIsObject($depth_collection);
 	}
@@ -31,7 +31,7 @@ class oneTest extends TestCase {
 		$depths = explode( PHP_EOL, $this->test_data );
 
 		$depth_reporter = new DepthReporter();
-		$depth_reporter->depths( new DepthCollection( $depths ) );
+		$depth_reporter->depths( new DistanceCollection( $depths ) );
 
 		$this->assertEquals(
 			$depth_reporter->report()->getDepthIncreases(),
@@ -43,7 +43,7 @@ class oneTest extends TestCase {
 		$depths = explode( PHP_EOL, $this->test_data );
 
         $depth_reporter = new DepthReporter();
-        $depth_reporter->depths( new DepthCollection( $depths ) );
+        $depth_reporter->depths( new DistanceCollection( $depths ) );
 
         $this->assertEquals(
             $depth_reporter->sliding_depth_report(3)->getDepthIncreases(),

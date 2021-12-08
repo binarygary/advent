@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\twenty_one;
 
-use App\Services\Submarine\DepthCollection;
+use App\Services\Submarine\DistanceCollection;
 use App\Services\Submarine\DepthReporter;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -44,14 +44,14 @@ class one extends Command {
 			Storage::path( 'input/2021/data1.txt' ) )
 		);
 
-		$depth_collection = new DepthCollection( $data );
+		$depth_collection = new DistanceCollection( $data );
 
 		echo $depth_reporter->depths( $depth_collection )->report()->getDepthIncreases();
 		echo PHP_EOL;
 
 
 		$depth_reporter = new DepthReporter();
-		$depth_collection = new DepthCollection( $data );
+		$depth_collection = new DistanceCollection( $data );
 		echo $depth_reporter->depths( $depth_collection )->sliding_depth_report(3)->getDepthIncreases();
 
 		return Command::SUCCESS;
