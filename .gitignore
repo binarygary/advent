@@ -14,4 +14,4 @@ yarn-error.log
 /.idea
 /.vscode
 
-!/public/storage/app/input/*
+!public/storage/app/input/*
